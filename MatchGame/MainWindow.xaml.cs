@@ -21,6 +21,7 @@ namespace MatchGame
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Boolean randomList = true;
         DispatcherTimer timer = new DispatcherTimer();
         int tenthsOfSecondsElapsed;
         int matchesFound;
@@ -32,15 +33,17 @@ namespace MatchGame
 
             SetUpGame();
         }
-
         private void Timer_Tick(object sender, EventArgs e)
         {
             tenthsOfSecondsElapsed++;
             timeTextBlock.Text = (tenthsOfSecondsElapsed / 10F).ToString("0.0s");
             if (matchesFound == 8)
             {
+                
                 timer.Stop();
                 timeTextBlock.Text = timeTextBlock.Text + " - Play again?";
+                bestTimeBlock.Text = timeTextBlock.Text;
+                randomList = false;
             }
         }
 
@@ -48,14 +51,26 @@ namespace MatchGame
         {
             List<string> animalEmoji = new List<string>()
             {
-                "🐁","‍🐁",
-                "‍🐪","🐪",
-                "🐱‍🐉","🐱‍🐉",
-                "🐇","🐇",
-                "🦜","🦜",
-                "‍🐈","‍🐈",
-                "‍🐍","🐍",
-                "🐌","🐌",
+                "a","a",
+                "b","b",
+                "c","c",
+                "d","d",
+                "e","e",
+                "f","f",
+                "g","g",
+                "h","h",
+            };
+
+            List<string> animalEmojitwo = new List<string>()
+            {
+                "i","i",
+                "j","j",
+                "k","k",
+                "l","l",
+                "m","m",
+                "n","n",
+                "o","o",
+                "p","p",
             };
 
             Random random = new Random();
@@ -64,11 +79,31 @@ namespace MatchGame
             {
                 if (textBlock.Name != "timeTextBlock")
                 {
-                    textBlock.Visibility = Visibility.Visible;
-                    int index = random.Next(animalEmoji.Count);
-                    string nextEmoji = animalEmoji[index];
-                    textBlock.Text = nextEmoji;
-                    animalEmoji.RemoveAt(index);
+                    if (textBlock.Name != "bestTimeBlock")
+                    {
+                        if (randomList != false)
+                        {
+                            textBlock.Visibility = Visibility.Visible;
+                            int index = random.Next(animalEmoji.Count);
+                            string nextEmoji = animalEmoji[index];
+                            textBlock.Text = nextEmoji;
+                            animalEmoji.RemoveAt(index);
+
+                        }
+                        else
+                        {
+                            textBlock.Visibility = Visibility.Visible;
+                            int index = random.Next(animalEmojitwo.Count);
+                            string nextEmoji = animalEmojitwo[index];
+                            textBlock.Text = nextEmoji;
+                            animalEmojitwo.RemoveAt(index);
+
+
+                        }
+
+                    }
+                    
+
                 }
             }
 

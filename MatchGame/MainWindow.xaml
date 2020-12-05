@@ -54,7 +54,8 @@
         HorizontalAlignment="Center" VerticalAlignment="Center" Height="48" Width="16" MouseDown="TextBlock_MouseDown"/>
         <TextBlock x:Name="timeTextBlock" Text="Elapsed time" FontSize="36"
          HorizontalAlignment="Center" VerticalAlignment="Center"
-         Grid.Row="4" Grid.ColumnSpan="4" MouseDown="TimeTextBlock_MouseDown"/>
+         Grid.Row="4" Grid.ColumnSpan="3" MouseDown="TimeTextBlock_MouseDown"/>
+        <TextBlock x:Name="bestTimeBlock" Grid.Column="3" HorizontalAlignment="Center" Grid.Row="4" Text="best time" TextWrapping="Wrap" VerticalAlignment="Center"/>
 
 
     </Grid>
