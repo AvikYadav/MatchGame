@@ -22,8 +22,8 @@ namespace MatchGame
     public partial class MainWindow : Window
     {
         public Boolean randomList = true;
-        public int currentTime = 0;
-        public int bestTime = 0;
+        public double currentTime = 0;
+        public double bestTime = 0;
 
         DispatcherTimer timer = new DispatcherTimer();
         int tenthsOfSecondsElapsed;
@@ -39,18 +39,20 @@ namespace MatchGame
         private void Timer_Tick(object sender, EventArgs e)
         {
             tenthsOfSecondsElapsed++;
-            timeTextBlock.Text = (tenthsOfSecondsElapsed / 10F).ToString("0.0s");
+            timeTextBlock.Text = (tenthsOfSecondsElapsed / 10F).ToString("0.0");
             if (matchesFound == 8)
             {
-                currentTime = Convert.ToInt32(timeTextBlock.Text);
-                bestTime = currentTime;
-                if (bestTime <= currentTime)
-                {
-                    bestTimeBlock.Text = Convert.ToString(bestTime);
-                }
+                currentTime = Convert.ToDouble(timeTextBlock.Text);
+                if (!Convert.ToBoolean(bestTime) || bestTime > currentTime) {
+                    bestTime = currentTime;
+                };
+
+             
+                bestTimeBlock.Text = Convert.ToString(bestTime);
+                
                 timer.Stop();
-                timeTextBlock.Text = timeTextBlock.Text + " - Play again?";
-                bestTimeBlock.Text = timeTextBlock.Text;
+                timeTextBlock.Text = timeTextBlock.Text + " - Play again";
+                bestTimeBlock.Text = bestTimeBlock.Text + " Best Time";
                 randomList = false;
             }
         }
@@ -59,26 +61,26 @@ namespace MatchGame
         {
             List<string> animalEmoji = new List<string>()
             {
-                "a","a",
-                "b","b",
-                "c","c",
-                "d","d",
-                "e","e",
-                "f","f",
-                "g","g",
-                "h","h",
+                "😀","😀",
+                "🐶","🐶",
+                "😂","😂",
+                "🐙","🐙",
+                "😎","😎",
+                "🦒","🦒",
+                "🥳","🥳",
+                "🦍","🦍",
             };
 
             List<string> animalEmojitwo = new List<string>()
             {
-                "i","i",
-                "j","j",
-                "k","k",
-                "l","l",
-                "m","m",
-                "n","n",
-                "o","o",
-                "p","p",
+                "🤮","🤮",
+                "🐬","🐬",
+                "😎","😎",
+                "🐢","🐢",
+                "🐵","🐵",
+                "🐼","🐼",
+                "🐭","🐭",
+                "🐔","🐔",
             };
 
             Random random = new Random();
