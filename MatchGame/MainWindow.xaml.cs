@@ -22,6 +22,9 @@ namespace MatchGame
     public partial class MainWindow : Window
     {
         public Boolean randomList = true;
+        public int currentTime = 0;
+        public int bestTime = 0;
+
         DispatcherTimer timer = new DispatcherTimer();
         int tenthsOfSecondsElapsed;
         int matchesFound;
@@ -39,7 +42,12 @@ namespace MatchGame
             timeTextBlock.Text = (tenthsOfSecondsElapsed / 10F).ToString("0.0s");
             if (matchesFound == 8)
             {
-                
+                currentTime = Convert.ToInt32(timeTextBlock.Text);
+                bestTime = currentTime;
+                if (bestTime <= currentTime)
+                {
+                    bestTimeBlock.Text = Convert.ToString(bestTime);
+                }
                 timer.Stop();
                 timeTextBlock.Text = timeTextBlock.Text + " - Play again?";
                 bestTimeBlock.Text = timeTextBlock.Text;
